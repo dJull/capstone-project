@@ -2,6 +2,9 @@
 <link rel="stylesheet" href="/css/landing.css" />
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+</script>
 <style>
     body {
         font-family: 'Nunito';
@@ -41,6 +44,12 @@
     <div style="height:15%; background-color:rgb(243 244 246)"></div>
     <x-jet-authentication-card class="p-5">
         <img class="logo" src="{{url('/image/logo.png')}}">
+        @if (session('error'))
+        <div class="alert alert-danger alert-dismissible fade show fade in" role="alert">
+            {{ session('error') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        @endif
         <p class="title mb-1">Selamat datang di Situs Web!👋</p>
         <p class="_text">Silakan Masuk ke Akun Anda dan mulai Petualangan</p>
 
@@ -49,12 +58,6 @@
         </x-slot>
 
         <x-jet-validation-errors class="mb-4" />
-
-        @if (session('status'))
-        <div class="mb-4 font-medium text-sm text-green-600">
-            {{ session('status') }}
-        </div>
-        @endif
 
         <form method="POST" action="masuk">
             @csrf
@@ -73,16 +76,7 @@
             </div>
 
             <div style="margin:3% 0 4% 0">
-                <label for="remember_me">
-                    <x-jet-checkbox class="p-2" id="remember_me" name="remember" />
-                    <span class="text-sm text-gray-6002">{{ __('Ingat saya') }}</span>
-                </label>
-                @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" style="margin-left:51%"
-                    href="{{ route('password.request') }}">
-                    {{ __('Lupa password?') }}
-                </a>
-                @endif
+
             </div>
             <div class="flex items-center">
                 <button class="py-2" style="background-color:#28DF99; width:100%; color:white; border-radius:6px">
