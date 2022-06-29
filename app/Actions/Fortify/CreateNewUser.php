@@ -33,6 +33,7 @@ class CreateNewUser implements CreatesNewUsers
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
             'roles' => 'admin',
+            'account_number' => random_int(100000, 999999)
         ]);
 
         Dompet::create([

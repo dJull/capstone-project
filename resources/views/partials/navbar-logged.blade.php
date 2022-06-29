@@ -26,9 +26,7 @@
 
     <div class="collapse navbar-collapse ml-auto justify-content-end" id="navbarNav">
       <ul class="navbar-nav">
-        <li class="nav-item pe-4 item">
-          <img src="image/icon/notif.png" alt="notif" class="pt-2">
-        </li>
+
         <li class="nav-item icon-profil">
           <a class="nav-link inline d-flex" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
