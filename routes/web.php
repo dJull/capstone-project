@@ -21,21 +21,18 @@ use App\Models\User;
 
 Route::get('/', function () {
     return view('landing-page');
-});
-
-Route::middleware(['auth:sanctum', 'verified'])->get('/', function () {
-    return view('landing-page');
 })->name('landing-page');
 
+// Route::middleware(['auth:sanctum', 'verified'])->get('/', function () {
+//     return view('landing-page');
+// })->name('landing-page');
 
 Route::get('/clear-cache', function () {
     Artisan::call('cache:clear');
     return "Cache is cleared";
 });
 
-Route::get('/atm-signin', function () {
-    return view('ATM.signin');
-});
+
 
 Route::post('/masuk', [LoginController::class, 'login']);
 
@@ -43,6 +40,9 @@ Route::post('/masuk', [LoginController::class, 'login']);
 
 //////////////////////// middleware/////////////////////////////
 Route::middleware(['auth'])->group(function () {
+    Route::get('/atm-signin', function () {
+        return view('ATM.signin');
+    });
     Route::get('/scan', function () {
         return view('scan');
     });
